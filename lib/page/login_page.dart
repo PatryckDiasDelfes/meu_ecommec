@@ -21,14 +21,25 @@ class LoginPage extends StatelessWidget {
               Text('+DevsEcomm',  style: AppTextStyle.title,),
               Spacer(flex: 2),
               AppTextField(hintText: 'Email@dominio.com'),
-              AppTextField(hintText: '*********'),
+              SizedBox(height: 10),
+              AppTextField(hintText: '*********', isPassword: true,),
               TextButton(
+                style: TextButton.styleFrom(
+                  alignment: Alignment.centerRight,
+                ),
                 onPressed: () => {}, 
-                child: Text('Esqueci minha senha'),
+                child: Text(
+                  'Esqueci minha senha',
+                  style: TextStyle(
+                    color: AppColors.black
+                  ),
+                ),
               ),
-              AppElevatedBotton(buttonName: 'Entrar', backgroundColor: AppColors.black, foregroundColor: AppColors.white,),
-              SizedBox(height: 30,),
-              AppElevatedBotton(buttonName: 'Cadastra-se', backgroundColor: AppColors.white, foregroundColor: AppColors.black),
+              AppElevatedBotton(
+                buttonName: 'Entrar', backgroundColor: AppColors.black, foregroundColor: AppColors.white, borderColor: AppColors.black),
+              SizedBox(height: 30),
+              AppElevatedBotton(
+                buttonName: 'Cadastra-se', backgroundColor: AppColors.white, foregroundColor: AppColors.black, borderColor: AppColors.black),
 
               Spacer(),
         //GestureDetector adciona metodos de interação
@@ -40,11 +51,12 @@ class LoginPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                   children: [
-                    TextSpan(text: 'Termo de serviço', style: TextStyle(color: AppColors.black)),
-                    TextSpan(text: 'e', style: TextStyle(color: AppColors.black)),
-                    TextSpan(text: 'Politicas de privacidade', style: TextStyle(color: AppColors.black)),
-                  ]
-                )),
+                    TextSpan(text: 'Termo de serviço ', style: TextStyle(color: AppColors.black)),
+                    TextSpan(text: 'e', style: TextStyle(color: AppColors.gray100)),
+                    TextSpan(text: ' Politicas de privacidade', style: TextStyle(color: AppColors.black)),
+                  ],
+                  ),
+                ),
               ),
               Spacer(flex: 2),
             ],
