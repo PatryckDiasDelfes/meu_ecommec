@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_ecommec/page/singup_page.dart';
 import 'package:meu_ecommec/shared/app_colors.dart';
 import 'package:meu_ecommec/shared/app_text_style.dart';
 import 'package:meu_ecommec/shared/widget/app_elevated_botton.dart';
@@ -6,6 +7,8 @@ import 'package:meu_ecommec/shared/widget/app_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
+
+  static String route = '/login';
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +33,22 @@ class LoginPage extends StatelessWidget {
                 onPressed: () => {}, 
                 child: Text(
                   'Esqueci minha senha',
-                  style: TextStyle(
-                    color: AppColors.black
-                  ),
+                  style: AppTextStyle.smallBlack,
                 ),
               ),
-              AppElevatedBotton(
-                buttonName: 'Entrar', backgroundColor: AppColors.black, foregroundColor: AppColors.white, borderColor: AppColors.black),
+              AppElevatedButton(
+                label: 'Entrar', 
+                onPressed: () => {},
+                type: ButtonType.filled, 
+                backgroundColor: AppColors.black, 
+                ),
               SizedBox(height: 30),
-              AppElevatedBotton(
-                buttonName: 'Cadastra-se', backgroundColor: AppColors.white, foregroundColor: AppColors.black, borderColor: AppColors.black),
+              AppElevatedButton(
+                label: 'Cadastre-se',
+                onPressed: () => Navigator.pushNamed(context, SingupPage.route), 
+                type: ButtonType.outlined, 
+                backgroundColor: AppColors.white, 
+              ),
 
               Spacer(),
         //GestureDetector adciona metodos de interação

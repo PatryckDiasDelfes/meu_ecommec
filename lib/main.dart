@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_ecommec/routes.dart';
 import 'page/login_page.dart';
 
 void main() {
@@ -11,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // ALTERADO: remove a faixa DEBUG
-      debugShowCheckedModeBanner: false,
 
-      // ALTERADO: define a LoginPage como tela inicial
-      home: const LoginPage(),
+      routes: AppRoutes.routes,
+
+      title: 'Flutter Demo',
+      initialRoute: LoginPage.route,
     );
   }
 }

@@ -1,36 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:meu_ecommec/shared/app_colors.dart';
 import 'package:meu_ecommec/shared/app_text_style.dart';
 
-class AppElevatedBotton extends StatelessWidget {
-  const AppElevatedBotton({
-    super.key, required this.buttonName, required this.backgroundColor, required this.foregroundColor, required this.borderColor,
+enum ButtonType { filled, outlined }
+
+class AppElevatedButton extends StatelessWidget {
+  const AppElevatedButton({
+    super.key,
+    required this.label,
+    this.onPressed,
+    required this.type,
+    required this.backgroundColor,
   });
 
-  final String buttonName;
-  final Color backgroundColor;
-  final Color foregroundColor;   
-  final Color borderColor;
+  final String label;
+  final VoidCallback? onPressed;
+  final ButtonType type;
+  final Color backgroundColor;  
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: _getStyle(),
+      child: Text(label),
+    );
+  }
 
-    
-      (onPressed:() => {}, 
-        style: ElevatedButton.styleFrom(
+  ButtonStyle _getStyle() {
+    switch (type) {
+      case ButtonType.filled:
+        return ElevatedButton.styleFrom(
           minimumSize: Size.fromHeight(48),
-          foregroundColor: foregroundColor,
+          foregroundColor: AppColors.white,
           backgroundColor: backgroundColor,
           textStyle: AppTextStyle.buttonLabel,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          side: BorderSide(
-            color: borderColor,
-            width: 2,
+        );
+      case ButtonType.outlined:
+        return ElevatedButton.styleFrom(
+          minimumSize: Size.fromHeight(48),
+          foregroundColor: AppColors.black,
+          backgroundColor: backgroundColor,
+          textStyle: AppTextStyle.buttonLabel,
+
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: AppColors.black),
+            borderRadius: BorderRadius.circular(12),
           ),
-        ),
-        child: Text(buttonName),
-    );
+        );
+    }
   }
 }

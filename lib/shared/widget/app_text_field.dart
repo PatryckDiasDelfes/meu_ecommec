@@ -6,13 +6,13 @@ class AppTextField extends StatefulWidget  {
 
   final String hintText;
   final bool isPassword;
+  
    
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 
 }
   class _AppTextFieldState extends State<AppTextField> {
-
 
     bool obscureText = true;
 
