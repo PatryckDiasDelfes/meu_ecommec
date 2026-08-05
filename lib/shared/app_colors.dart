@@ -4,7 +4,7 @@ class AppColors {
 
   static const Color black = Colors.black;
   static const Color white = Colors.white;
-  static const Color gray100 = Color(0xFFE0E0E0);
+  static const Color gray100 = Color.fromARGB(255, 158, 150, 150);
   //static const Color
 
 }

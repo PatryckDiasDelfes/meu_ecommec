@@ -10,6 +10,12 @@ class AppTextStyle{
     fontStyle: FontStyle.italic,
   );
 
+  static const TextStyle subTitle = TextStyle(
+    color: AppColors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
   static const TextStyle buttonLabel = TextStyle(
     color: AppColors.white,
   );

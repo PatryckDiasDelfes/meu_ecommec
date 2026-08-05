@@ -22,8 +22,6 @@ class AppTextField extends StatefulWidget  {
 
         obscureText: widget.isPassword ? obscureText : false,
 
-        
-
         decoration: InputDecoration(
           
           suffixIcon: widget.isPassword

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:meu_ecommec/shared/widget/app_elevated_botton.dart';
-import 'package:meu_ecommec/shared/widget/app_text_field.dart';
+import 'package:meu_1_ecommerc/shared/app_colors.dart';
+import 'package:meu_1_ecommerc/shared/app_text_style.dart';
+import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
+import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
+
 
 class SingupPage extends StatelessWidget {
 
@@ -20,28 +23,74 @@ class SingupPage extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'Criar Uma conta'),
+                      'Criar Uma conta',
+                      style: AppTextStyle.subTitle,
+                    ),
                     Text('Insira seus dados para iniciar suas compras')
                   ],
                 ),
                 
-                AppTextField(
-                  hintText: 'Email@dominio.com',
+                SizedBox(height: 20),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.sizeOf(context).width * 0.05,
+                  ),
+                  child: Column( 
+                    children: [
+                      AppTextField(
+                      hintText: 'Email@dominio.com',
+                    ),
+                    SizedBox(height: 15,),
+                    AppTextField(
+                      hintText: 'Nome',
+                    ),
+                    SizedBox(height: 15,),
+                    AppTextField(
+                      hintText: 'Senha',
+                      isPassword: true,
+                    ),
+                    SizedBox(height: 15,),
+                    AppTextField(
+                      hintText: 'Confirme senha',
+                      isPassword: true,
+                    ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 15,),
-                AppTextField(
-                  hintText: 'Nome',
+
+                Spacer(flex: 2),
+
+                Column(
+                  children: [
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                      children: [
+                        TextSpan(text: 'Ao clicar em continuar, você concorda com os nossos\n', style: TextStyle(color: AppColors.gray100)),
+                        TextSpan(text: 'Termos de Serviço ', style: TextStyle(color: AppColors.black)),
+                        TextSpan(text: 'e com a ', style: TextStyle(color: AppColors.gray100)),
+                        TextSpan(text: 'Política de Privacidade', style: TextStyle(color: AppColors.black)),
+                      ],
+                      ),
+                    ),
+                    
+                    SizedBox(height: 20,),
+                    
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.90,
+                      child: AppElevatedButton(
+                        label: 'Continuar', 
+                        onPressed: () => {},
+                        type:  ButtonType.filled, 
+                        backgroundColor: AppColors.black
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 15,),
-                AppTextField(
-                  hintText: 'Senha',
-                  isPassword: true,
-                ),
-                SizedBox(height: 15,),
-                AppTextField(
-                  hintText: 'Confirme senha',
-                  isPassword: true,
-                ),
+
+                SizedBox(height: 40),
+
               ],
             ),
            ),

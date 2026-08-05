@@ -1,4 +1,4 @@
-name: meu_ecommec
+name: meu_1_ecommerc
 description: "A new Flutter module project."
 
 # The following defines the version and build number for your application.
@@ -24,9 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  flutter_native_splash: ^2.4.8
 
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:meu_ecommec/page/singup_page.dart';
-import 'package:meu_ecommec/shared/app_colors.dart';
-import 'package:meu_ecommec/shared/app_text_style.dart';
-import 'package:meu_ecommec/shared/widget/app_elevated_botton.dart';
-import 'package:meu_ecommec/shared/widget/app_text_field.dart';
-
+import 'package:meu_1_ecommerc/page/singup_page.dart';
+import 'package:meu_1_ecommerc/shared/app_colors.dart';
+import 'package:meu_1_ecommerc/shared/app_text_style.dart';
+import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
+import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -21,7 +20,18 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Spacer(flex: 2),
-              Text('+DevsEcomm',  style: AppTextStyle.title,),
+              Column(
+                children: [
+                  Image.asset( 
+                    //'assets/images/icon_market.png',
+                    'assets/images/splash_screen.png',
+                    width: MediaQuery.of(context).size.width * 0.4,
+
+
+                  ),
+                  Text('+DevsEcomm',  style: AppTextStyle.title,),
+                ],
+              ),
               Spacer(flex: 2),
               AppTextField(hintText: 'Email@dominio.com'),
               SizedBox(height: 10),
