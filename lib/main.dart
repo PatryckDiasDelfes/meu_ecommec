@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_1_ecommerc/routes.dart';
-import 'page/login_page.dart';
+import 'features/page/login_page.dart';
 
 void main() {
   runApp(const MyApp());

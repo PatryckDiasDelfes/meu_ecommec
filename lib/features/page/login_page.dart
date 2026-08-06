@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/page/singup_page.dart';
+import 'package:meu_1_ecommerc/features/controller/login_controller.dart';
+import 'package:meu_1_ecommerc/features/page/singup_page.dart';
 import 'package:meu_1_ecommerc/shared/app_colors.dart';
 import 'package:meu_1_ecommerc/shared/app_text_style.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
-import 'package:meu_1_ecommerc/shared/widget/checkBox.dart';
+import 'package:meu_1_ecommerc/shared/widget/app_checkBox.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -13,12 +14,9 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-class _LoginPageState extends State<LoginPage> {
-  String email = '';
-  String senha = '';
-  bool isActiveButton = false;
-  bool lembreDeMim = false;
 
+class _LoginPageState extends State<LoginPage> {
+  LoginController loginController = LoginController();
   @override
   initState() {
     super.initState();
@@ -26,7 +24,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    isActiveButton = email.trim().isNotEmpty && senha.trim().isNotEmpty;
 
     return Scaffold(
       body: SafeArea(
@@ -54,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: 'Email@dominio.com',
                 onChanged: (value){
                   setState(() {
-                    email = value;
+                    loginController.setEmail(value);
                   });
                 }
               ),
@@ -64,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 onChanged: (value){
                   setState(() {
-                    senha = value;
+                    loginController.setSenha(value);
                   });
                 }
               ),
@@ -85,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               AppElevatedButton(
                 label: 'Entrar',
-                onPressed: isActiveButton
+                onPressed: loginController.isActiveButton
                     ? () => {print('cliquei em entrar')}
                     : null,
                 type: ButtonType.filled,
