@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meu_ecommec/routes.dart';
+import 'package:meu_1_ecommerc/routes.dart';
 import 'page/login_page.dart';
 
 void main() {

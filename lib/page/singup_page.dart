@@ -5,11 +5,22 @@ import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
 
 
-class SingupPage extends StatelessWidget {
+class SingupPage extends StatefulWidget {
 
   const SingupPage({ super.key });
 
   static String route = '/singup';
+
+  @override
+  State<SingupPage> createState() => _SingupPageState();
+}
+
+class _SingupPageState extends State<SingupPage> {
+  String email = '';
+  String nome = '';
+  String senha = '';
+
+  bool lembreDeMim = false;
 
    @override
    Widget build(BuildContext context) {
@@ -48,12 +59,12 @@ class SingupPage extends StatelessWidget {
                     SizedBox(height: 15,),
                     AppTextField(
                       hintText: 'Senha',
-                      isPassword: true,
+                      obscureText: true,
                     ),
                     SizedBox(height: 15,),
                     AppTextField(
                       hintText: 'Confirme senha',
-                      isPassword: true,
+                      obscureText: true,
                     ),
                     ],
                   ),
@@ -63,6 +74,14 @@ class SingupPage extends StatelessWidget {
 
                 Column(
                   children: [
+                    Checkbox(
+                          value: lembreDeMim,
+                          onChanged: (value) {
+                            setState(() {
+                              lembreDeMim = value!;
+                            });
+                          }
+                        ),
                     RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(

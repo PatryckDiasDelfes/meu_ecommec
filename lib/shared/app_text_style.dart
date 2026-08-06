@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meu_ecommec/shared/app_colors.dart';
+import 'package:meu_1_ecommerc/shared/app_colors.dart';
 
 class AppTextStyle{
 

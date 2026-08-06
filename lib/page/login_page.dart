@@ -4,13 +4,30 @@ import 'package:meu_1_ecommerc/shared/app_colors.dart';
 import 'package:meu_1_ecommerc/shared/app_text_style.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
-class LoginPage extends StatelessWidget {
+import 'package:meu_1_ecommerc/shared/widget/checkBox.dart';
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   static String route = '/login';
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+class _LoginPageState extends State<LoginPage> {
+  String email = '';
+  String senha = '';
+  bool isActiveButton = false;
+  bool lembreDeMim = false;
+
+  @override
+  initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    isActiveButton = email.trim().isNotEmpty && senha.trim().isNotEmpty;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -33,9 +50,38 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               Spacer(flex: 2),
-              AppTextField(hintText: 'Email@dominio.com'),
+              AppTextField(
+                hintText: 'Email@dominio.com',
+                onChanged: (value){
+                  setState(() {
+                    email = value;
+                  });
+                }
+              ),
               SizedBox(height: 10),
-              AppTextField(hintText: '*********', isPassword: true,),
+              AppTextField(
+                hintText: '*********', 
+                obscureText: true,
+                onChanged: (value){
+                  setState(() {
+                    senha = value;
+                  });
+                }
+              ),
+              Row(
+                children: [
+                  //Checkbox(
+                  //  value: lembreDeMim,
+                  //  onChanged: (value) {
+                  //    setState(() {
+                  //      lembreDeMim = value!;
+                  //    });
+                  //  }
+                  //),
+                  CustomCheckbox(text: 'Lembre-se de mim')
+                  //Text('Lembre-se de mim')
+                ],
+              ),
               TextButton(
                 style: TextButton.styleFrom(
                   alignment: Alignment.centerRight,
@@ -47,10 +93,12 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               AppElevatedButton(
-                label: 'Entrar', 
-                onPressed: () => {},
-                type: ButtonType.filled, 
-                backgroundColor: AppColors.black, 
+                label: 'Entrar',
+                onPressed: isActiveButton
+                    ? () => {print('cliquei em entrar')}
+                    : null,
+                type: ButtonType.filled,
+                backgroundColor: AppColors.black,
                 ),
               SizedBox(height: 30),
               AppElevatedButton(

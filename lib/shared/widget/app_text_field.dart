@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:meu_ecommec/shared/app_colors.dart';
+import 'package:meu_1_ecommerc/shared/app_colors.dart';
 
 class AppTextField extends StatefulWidget  {
-  const AppTextField({super.key, required this.hintText, this.isPassword = false,});
+  const AppTextField({
+    super.key,
+    required this.hintText, 
+    this.obscureText = false, 
+    this.onChanged,
+    
+  });
 
   final String hintText;
-  final bool isPassword;
+  final bool obscureText;
+  final Function(String)? onChanged;
   
    
   @override
@@ -13,33 +20,35 @@ class AppTextField extends StatefulWidget  {
 
 }
   class _AppTextFieldState extends State<AppTextField> {
-
-    bool obscureText = true;
+    late bool isObscure;
 
     @override
+    initState() {
+      isObscure = widget.obscureText;
+      super.initState();
+    }
+    void toggleObscure() {
+      setState(() {
+        isObscure = !isObscure;
+      });
+    }
+
     Widget build(BuildContext context) {
       return TextField(
-
-        obscureText: widget.isPassword ? obscureText : false,
+        onChanged: widget.onChanged,
+        obscureText: isObscure,
 
         decoration: InputDecoration(
-          
-          suffixIcon: widget.isPassword
+          suffixIcon: widget.obscureText
             ? IconButton(
-                icon: Icon(
-                  obscureText
-                      ? Icons.visibility_off
-                      : Icons.visibility,
-                ),
-
                 onPressed: () {
-                  setState(() {
-                    obscureText = !obscureText;
-                  });
+                  toggleObscure();
                 },
+                icon: isObscure
+                    ? Icon(Icons.visibility_off)
+                    : Icon(Icons.visibility),
               )
             : null,
-
 
           hintText: widget.hintText,
           border: OutlineInputBorder(
@@ -53,6 +62,10 @@ class AppTextField extends StatefulWidget  {
             borderSide: BorderSide(
               color: AppColors.gray100,
             ),
+            //focusedBorder: OutlineInputBorder(
+              //borderRadius: BorderRadius.circular(14),
+              //borderSide: BorderSide(color: AppColors.gray100),
+            //),
           ), 
         ),
       );
