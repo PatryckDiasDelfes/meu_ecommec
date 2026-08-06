@@ -70,16 +70,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Row(
                 children: [
-                  //Checkbox(
-                  //  value: lembreDeMim,
-                  //  onChanged: (value) {
-                  //    setState(() {
-                  //      lembreDeMim = value!;
-                  //    });
-                  //  }
-                  //),
                   CustomCheckbox(text: 'Lembre-se de mim')
-                  //Text('Lembre-se de mim')
                 ],
               ),
               TextButton(

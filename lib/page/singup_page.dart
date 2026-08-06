@@ -3,6 +3,7 @@ import 'package:meu_1_ecommerc/shared/app_colors.dart';
 import 'package:meu_1_ecommerc/shared/app_text_style.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
+import 'package:meu_1_ecommerc/shared/widget/checkBox.dart';
 
 
 class SingupPage extends StatefulWidget {
@@ -19,11 +20,24 @@ class _SingupPageState extends State<SingupPage> {
   String email = '';
   String nome = '';
   String senha = '';
+  String confirmarSenha = '';
 
   bool lembreDeMim = false;
+  bool isActiveButton = false;
 
    @override
    Widget build(BuildContext context) {
+   void validarCampos() {
+    setState(() {
+      isActiveButton = 
+      email.trim().isNotEmpty && 
+      nome.trim().isNotEmpty && 
+      senha.trim().isNotEmpty && 
+      confirmarSenha.trim().isNotEmpty && 
+      senha == confirmarSenha;
+    });
+   }
+
        return Scaffold(
            appBar: AppBar(title: const Text(''),),
            
@@ -51,20 +65,36 @@ class _SingupPageState extends State<SingupPage> {
                     children: [
                       AppTextField(
                       hintText: 'Email@dominio.com',
+                      onChanged: (value) {
+                        email = value;
+                        validarCampos();
+                      }
                     ),
                     SizedBox(height: 15,),
                     AppTextField(
                       hintText: 'Nome',
+                      onChanged: (value) {
+                        nome = value;
+                        validarCampos();
+                      }
                     ),
                     SizedBox(height: 15,),
                     AppTextField(
                       hintText: 'Senha',
                       obscureText: true,
+                      onChanged: (value) {
+                        senha = value;
+                        validarCampos();
+                      }
                     ),
                     SizedBox(height: 15,),
                     AppTextField(
                       hintText: 'Confirme senha',
                       obscureText: true,
+                      onChanged: (value) {
+                        confirmarSenha = value;
+                        validarCampos();
+                      }
                     ),
                     ],
                   ),
@@ -73,15 +103,9 @@ class _SingupPageState extends State<SingupPage> {
                 Spacer(flex: 2),
 
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Checkbox(
-                          value: lembreDeMim,
-                          onChanged: (value) {
-                            setState(() {
-                              lembreDeMim = value!;
-                            });
-                          }
-                        ),
+                    
                     RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
@@ -93,14 +117,20 @@ class _SingupPageState extends State<SingupPage> {
                       ],
                       ),
                     ),
-                    
+
+                    CustomCheckbox(
+                      text: 'Aceito',
+                    ),
+
                     SizedBox(height: 20,),
-                    
+
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.90,
                       child: AppElevatedButton(
                         label: 'Continuar', 
-                        onPressed: () => {},
+                        onPressed: isActiveButton
+                          ? () => {print('cliquei em entrar')}
+                          : null,
                         type:  ButtonType.filled, 
                         backgroundColor: AppColors.black
                       ),

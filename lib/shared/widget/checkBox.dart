@@ -20,6 +20,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
   Widget build(BuildContext context) {
 
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
 
         Checkbox(
