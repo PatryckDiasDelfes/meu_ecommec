@@ -6,6 +6,7 @@ import 'package:meu_1_ecommerc/shared/app_text_style.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_checkBox.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -24,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -36,45 +36,49 @@ class _LoginPageState extends State<LoginPage> {
               Spacer(flex: 2),
               Column(
                 children: [
-                  Image.asset( 
+                  Image.asset(
                     //'assets/images/icon_market.png',
                     'assets/images/splash_screen.png',
                     width: MediaQuery.of(context).size.width * 0.4,
-
-
                   ),
-                  Text('+DevsEcomm',  style: AppTextStyle.title,),
+                  Text('+DevsEcomm', style: AppTextStyle.title),
                 ],
               ),
               Spacer(flex: 2),
               AppTextField(
                 hintText: 'Email@dominio.com',
-                onChanged: (value){
+                onChanged: (value) {
                   setState(() {
                     loginController.setEmail(value);
                   });
-                }
+                },
               ),
               SizedBox(height: 10),
               AppTextField(
-                hintText: '*********', 
+                hintText: '*********',
                 obscureText: true,
-                onChanged: (value){
+                onChanged: (value) {
                   setState(() {
                     loginController.setSenha(value);
                   });
-                }
+                },
               ),
               Row(
                 children: [
-                  CustomCheckbox(text: 'Lembre-se de mim')
+                  CustomCheckbox(
+                    text: 'Lembre-se de mim',
+                    value: loginController.isActiveCheckBox,
+                    onChanged: (value) {
+                      setState(() {
+                        loginController.changeActiveCheckBox();
+                      });
+                    },
+                  ),
                 ],
               ),
               TextButton(
-                style: TextButton.styleFrom(
-                  alignment: Alignment.centerRight,
-                ),
-                onPressed: () => {}, 
+                style: TextButton.styleFrom(alignment: Alignment.centerRight),
+                onPressed: () => {},
                 child: Text(
                   'Esqueci minha senha',
                   style: AppTextStyle.smallBlack,
@@ -87,29 +91,36 @@ class _LoginPageState extends State<LoginPage> {
                     : null,
                 type: ButtonType.filled,
                 backgroundColor: AppColors.black,
-                ),
+              ),
               SizedBox(height: 30),
               AppElevatedButton(
                 label: 'Cadastre-se',
-                onPressed: () => Navigator.pushNamed(context, SingupPage.route), 
-                type: ButtonType.outlined, 
-                backgroundColor: AppColors.white, 
+                onPressed: () => Navigator.pushNamed(context, SingupPage.route),
+                type: ButtonType.outlined,
+                backgroundColor: AppColors.white,
               ),
 
               Spacer(),
-        //GestureDetector adciona metodos de interação
+              //GestureDetector adciona metodos de interação
               GestureDetector(
-                onTap: () => {
-                  print("Cliquei na linha"),
-                },
+                onTap: () => {print("Cliquei na linha")},
                 child: RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                  children: [
-                    TextSpan(text: 'Termo de serviço ', style: TextStyle(color: AppColors.black)),
-                    TextSpan(text: 'e', style: TextStyle(color: AppColors.gray100)),
-                    TextSpan(text: ' Politicas de privacidade', style: TextStyle(color: AppColors.black)),
-                  ],
+                    children: [
+                      TextSpan(
+                        text: 'Termo de serviço ',
+                        style: TextStyle(color: AppColors.black),
+                      ),
+                      TextSpan(
+                        text: 'e',
+                        style: TextStyle(color: AppColors.gray100),
+                      ),
+                      TextSpan(
+                        text: ' Politicas de privacidade',
+                        style: TextStyle(color: AppColors.black),
+                      ),
+                    ],
                   ),
                 ),
               ),
