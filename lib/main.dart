@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       routes: AppRoutes.routes,
 
       title: 'Flutter Demo',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_1_ecommerc/features/controller/login_controller.dart';
+import 'package:meu_1_ecommerc/features/page/pg_tast.dart';
 import 'package:meu_1_ecommerc/features/page/singup_page.dart';
 import 'package:meu_1_ecommerc/shared/app_colors.dart';
 import 'package:meu_1_ecommerc/shared/app_text_style.dart';
@@ -46,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Spacer(flex: 2),
               AppTextField(
+                errorText: loginController.emailError,
                 hintText: 'Email@dominio.com',
                 onChanged: (value) {
                   setState(() {
@@ -55,7 +57,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 10),
               AppTextField(
-                hintText: '*********',
+                errorSenha: loginController.senhaError,
+                hintText: '******',
                 obscureText: true,
                 onChanged: (value) {
                   setState(() {
@@ -96,6 +99,12 @@ class _LoginPageState extends State<LoginPage> {
               AppElevatedButton(
                 label: 'Cadastre-se',
                 onPressed: () => Navigator.pushNamed(context, SingupPage.route),
+                type: ButtonType.outlined,
+                backgroundColor: AppColors.white,
+              ),
+              AppElevatedButton(
+                label: 'Teste',
+                onPressed: () => Navigator.pushNamed(context, Testpagina.route),
                 type: ButtonType.outlined,
                 backgroundColor: AppColors.white,
               ),
