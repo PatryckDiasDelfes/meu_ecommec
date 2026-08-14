@@ -16,7 +16,7 @@ class AppElevatedButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
   final ButtonType type;
-  final Color backgroundColor;  
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {

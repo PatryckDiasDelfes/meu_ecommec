@@ -6,6 +6,8 @@ class SingUpController {
   bool isActiveCheckBox = false;
   bool isActiveButton = false;
 
+  final SingUpValidator validator = SingUpValidator();
+
   void setEmail(String emailParam) {
     email = emailParam;
     checkCamp();
@@ -39,5 +41,30 @@ class SingUpController {
         isActiveCheckBox &&
         confirmarSenha.trim().isNotEmpty &&
         senha == confirmarSenha;
+  }
+}
+
+class SingUpValidator {
+  bool minChars(String password) {
+    return password.length >= 6;
+  }
+
+  bool specialChar(String password) {
+    return minChars(password) &&
+        password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+  }
+
+  bool upperCase(String password) {
+    return minChars(password) && password.contains(RegExp(r'[A-Z]'));
+  }
+
+  bool lowerCase(String password) {
+    return minChars(password) && password.contains(RegExp(r'[a-z]'));
+  }
+
+  bool passwordMatch(String password, String confirmPassword) {
+    return password.isNotEmpty &&
+        confirmPassword.isNotEmpty &&
+        password == confirmPassword;
   }
 }

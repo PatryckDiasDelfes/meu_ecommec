@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_1_ecommerc/features/controller/login_controller.dart';
+import 'package:meu_1_ecommerc/features/page/forgot_page.dart';
 import 'package:meu_1_ecommerc/features/page/pg_tast.dart';
 import 'package:meu_1_ecommerc/features/page/singup_page.dart';
 import 'package:meu_1_ecommerc/shared/app_colors.dart';
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(
                 style: TextButton.styleFrom(alignment: Alignment.centerRight),
-                onPressed: () => {},
+                onPressed: () => Navigator.pushNamed(context, ForgotPage.route),
                 child: Text(
                   'Esqueci minha senha',
                   style: AppTextStyle.smallBlack,

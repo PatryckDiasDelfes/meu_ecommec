@@ -1,6 +1,6 @@
 class LoginController {
   final RegExp _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-  final _senhaRegx = RegExp(
+  final senhaRegx = RegExp(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]).{8,}$',
   );
   final int _caracterMinimoSenha = 6;
