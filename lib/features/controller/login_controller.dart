@@ -3,6 +3,9 @@ class LoginController {
   final senhaRegx = RegExp(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]).{8,}$',
   );
+
+  bool isLoading = false;
+
   final int _caracterMinimoSenha = 6;
   String email = '';
   String senha = '';
@@ -38,5 +41,9 @@ class LoginController {
 
   void changeActiveCheckBox() {
     isActiveCheckBox = !isActiveCheckBox;
+  }
+
+  Future<void> login() async {
+    await Future.delayed(Duration(seconds: 2));
   }
 }

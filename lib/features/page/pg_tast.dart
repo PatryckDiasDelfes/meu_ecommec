@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_1_ecommerc/shared/app_text_style.dart';
 //import 'package:flutter/rendering.dart';
 
 class Testpagina extends StatelessWidget {
@@ -36,6 +37,7 @@ class Testpagina extends StatelessWidget {
               child: PageView(
                 children: [
                   Container(
+                    padding: const EdgeInsets.all(20),
                     width: double.infinity,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
@@ -45,10 +47,43 @@ class Testpagina extends StatelessWidget {
                     ),
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [Text('Texto do produto')],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Aproveite as\n ofertas',
+                          style: AppTextStyle.subTitle,
+                        ),
+                      ],
                     ),
                   ),
+                  Container(
+                    color: Colors.amber,
+                    width: MediaQuery.sizeOf(context).width * 0.50,
+                    height: 250,
+                    child: Row(
+                      children: [
+                        Text(
+                          'Experimente\n agora!',
+                          style: AppTextStyle.subTitle,
+                        ),
+                        Spacer(),
+                        Image.asset(
+                          'assets/images/banner2.jpg',
+                          height: double.infinity,
+                          width: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  Text('Título'),
+                  Icon(Icons.arrow_forward_ios_outlined),
                 ],
               ),
             ),

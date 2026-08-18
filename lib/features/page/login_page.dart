@@ -89,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               AppElevatedButton(
+                isLoading: true,
                 label: 'Entrar',
                 onPressed: loginController.isActiveButton
                     ? () => {print('cliquei em entrar')}
