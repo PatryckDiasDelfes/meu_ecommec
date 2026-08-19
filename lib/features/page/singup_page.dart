@@ -18,10 +18,22 @@ class SingupPage extends StatefulWidget {
 
 class _SingupPageState extends State<SingupPage> {
   final SingUpController singUpController = SingUpController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
+
+    Future<void> _handleSingUpController() async {
+      setState(() {
+        singUpController.isLoading = true;
+      });
+      await singUpController.login();
+      setState(() {
+        singUpController.isLoading = false;
+      });
+    }
 
     // SafeArea evita que o conteúdo fique atrás da barra de status ou notch,
     // SingleChildScrollView permite rolar a página quando o conteúdo não couber,
@@ -64,6 +76,8 @@ class _SingupPageState extends State<SingupPage> {
               Column(
                 children: [
                   AppTextField(
+                    controller: emailController,
+                    validator: singUpController.validateEmail,
                     hintText: 'Email@dominio.com',
                     onChanged: (value) {
                       setState(() {
@@ -86,6 +100,8 @@ class _SingupPageState extends State<SingupPage> {
                   const SizedBox(height: 15),
 
                   AppTextField(
+                    controller: senhaController,
+                    validator: singUpController.validateSenha,
                     hintText: 'Senha',
                     obscureText: true,
                     onChanged: (value) {
@@ -98,6 +114,7 @@ class _SingupPageState extends State<SingupPage> {
                   const SizedBox(height: 15),
 
                   AppTextField(
+                    validator: singUpController.validateConfirmarSenha,
                     hintText: 'Confirme senha',
                     obscureText: true,
                     onChanged: (value) {
@@ -201,10 +218,11 @@ class _SingupPageState extends State<SingupPage> {
                 width: double.infinity,
                 child: AppElevatedButton(
                   label: 'Continuar',
-                  onPressed: singUpController.isActiveButton
-                      ? () {
-                          print('cliquei em entrar');
-                        }
+                  isLoading: singUpController.isLoading,
+                  onPressed:
+                      singUpController.isActiveButton &&
+                          !singUpController.isLoading
+                      ? _handleSingUpController
                       : null,
                   type: ButtonType.filled,
                   backgroundColor: AppColors.black,

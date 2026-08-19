@@ -29,7 +29,12 @@ class AppElevatedButton extends StatelessWidget {
           ? SizedBox(
               height: 20,
               width: 20,
-              child: CircularProgressIndicator(color: AppColors.black),
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: type == ButtonType.filled
+                    ? AppColors.white
+                    : AppColors.black,
+              ),
             )
           : Text(label),
     );
