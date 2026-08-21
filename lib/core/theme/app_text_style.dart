@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/shared/app_colors.dart';
+import 'package:meu_1_ecommerc/core/theme/app_colors.dart';
 
-class AppTextStyle{
-
+class AppTextStyle {
   static const TextStyle title = TextStyle(
     color: AppColors.black,
     fontSize: 28,
@@ -16,12 +15,7 @@ class AppTextStyle{
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle buttonLabel = TextStyle(
-    color: AppColors.white,
-  );
+  static const TextStyle buttonLabel = TextStyle(color: AppColors.white);
 
-  static const TextStyle smallBlack = TextStyle(
-    color: AppColors.black,
-  );
-
+  static const TextStyle smallBlack = TextStyle(color: AppColors.black);
 }

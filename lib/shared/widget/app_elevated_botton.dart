@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/shared/app_colors.dart';
-import 'package:meu_1_ecommerc/shared/app_text_style.dart';
+import 'package:meu_1_ecommerc/core/theme/app_colors.dart';
+import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
 
 enum ButtonType { filled, outlined }
 

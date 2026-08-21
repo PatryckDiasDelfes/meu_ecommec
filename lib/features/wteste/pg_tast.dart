@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/shared/app_text_style.dart';
+import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
 //import 'package:flutter/rendering.dart';
 
 class Testpagina extends StatelessWidget {

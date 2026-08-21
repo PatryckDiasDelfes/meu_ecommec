@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/routes.dart';
-import 'features/page/login_page.dart';
+import 'package:meu_1_ecommerc/core/routes/routes.dart';
+import 'package:meu_1_ecommerc/features/login/controller/login_controller.dart';
+import 'package:meu_1_ecommerc/features/singup/controller/singup_controller.dart';
+import 'package:provider/provider.dart';
+import 'features/login/page/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +14,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: AppRoutes.routes,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) {
+            return LoginController();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            return SingUpController();
+          },
+        ),
+      ],
+      builder: (context, child) {
+        return MaterialApp(
+          routes: AppRoutes.routes,
 
-      title: 'Flutter Demo',
-      initialRoute: LoginPage.route,
+          initialRoute: LoginPage.route,
+          title: 'Flutter Demo',
+        );
+      },
     );
   }
 }

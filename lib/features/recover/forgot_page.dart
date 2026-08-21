@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:meu_1_ecommerc/shared/app_colors.dart';
-import 'package:meu_1_ecommerc/shared/app_text_style.dart';
+import 'package:meu_1_ecommerc/core/theme/app_colors.dart';
+import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_text_field.dart';
 
@@ -24,7 +24,6 @@ class _ForgotPageState extends State<ForgotPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            
             Text('Recuperar senha', style: AppTextStyle.title),
 
             const SizedBox(height: 50),

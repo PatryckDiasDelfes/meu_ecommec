@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/shared/app_colors.dart';
+import 'package:meu_1_ecommerc/core/theme/app_colors.dart';
 
 class AppTextField extends StatefulWidget {
   const AppTextField({
@@ -25,9 +25,9 @@ class _AppTextFieldState extends State<AppTextField> {
   late bool isObscure;
 
   @override
-  initState() {
-    isObscure = widget.obscureText;
+  void initState() {
     super.initState();
+    isObscure = widget.obscureText;
   }
 
   void toggleObscure() {
@@ -36,39 +36,38 @@ class _AppTextFieldState extends State<AppTextField> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      //Controla a forma de como o campo é validado.
-      autovalidateMode: AutovalidateMode.onUnfocus,
       controller: widget.controller,
       onChanged: widget.onChanged,
       obscureText: isObscure,
       validator: widget.validator,
 
+      // Só mostra a validação automaticamente
+      // depois que showError for true.
+      // autovalidateMode: widget.showError
+      //     ? AutovalidateMode.always
+      //     : AutovalidateMode.disabled,
+      autovalidateMode: AutovalidateMode.onUnfocus,
       decoration: InputDecoration(
+        hintText: widget.hintText,
+
         suffixIcon: widget.obscureText
             ? IconButton(
-                onPressed: () {
-                  toggleObscure();
-                },
-                icon: isObscure
-                    ? Icon(Icons.visibility_off)
-                    : Icon(Icons.visibility),
+                onPressed: toggleObscure,
+                icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
               )
             : null,
 
-        hintText: widget.hintText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(color: AppColors.gray100),
         ),
+
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(color: AppColors.gray100),
-          //focusedBorder: OutlineInputBorder(
-          //borderRadius: BorderRadius.circular(14),
-          //borderSide: BorderSide(color: AppColors.gray100),
-          //),
         ),
       ),
     );
