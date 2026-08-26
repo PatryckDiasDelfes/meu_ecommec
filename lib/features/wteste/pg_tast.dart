@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
-//import 'package:flutter/rendering.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Testpagina extends StatelessWidget {
   static const String route = '/test';
 
-  const Testpagina({super.key});
+  Testpagina({super.key});
+
+  final List<String> banners = [
+    'assets/images/banner.png',
+    'assets/images/banner2.jpg',
+    'assets/images/banner3.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class Testpagina extends StatelessWidget {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(70),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: SearchBar(
               hintText: 'Pesquisar...',
               leading: const Icon(Icons.search),
@@ -32,51 +37,37 @@ class Testpagina extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 136,
-              width: 360,
-              child: PageView(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/banner.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Aproveite as\n ofertas',
-                          style: AppTextStyle.subTitle,
-                        ),
-                      ],
-                    ),
+              height: 170,
+              width: 390,
+
+              child: Container(
+                color: Colors.deepOrangeAccent,
+                child: CarouselSlider.builder(
+                  itemCount: banners.length,
+                  itemBuilder:
+                      (BuildContext context, int itemIndex, int pageViewIndex) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Container(
+                            width: itemIndex == 0
+                                ? MediaQuery.of(context).size.width
+                                : MediaQuery.of(context).size.width * 0.6,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(23),
+                              image: DecorationImage(
+                                image: AssetImage(banners[itemIndex]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                  options: CarouselOptions(
+                    height: 200,
+                    viewportFraction: 0.6,
+                    autoPlay: true,
                   ),
-                  Container(
-                    color: Colors.amber,
-                    width: MediaQuery.sizeOf(context).width * 0.50,
-                    height: 250,
-                    child: Row(
-                      children: [
-                        Text(
-                          'Experimente\n agora!',
-                          style: AppTextStyle.subTitle,
-                        ),
-                        Spacer(),
-                        Image.asset(
-                          'assets/images/banner2.jpg',
-                          height: double.infinity,
-                          width: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:meu_1_ecommerc/features/home/page/home_page.dart';
 import 'package:meu_1_ecommerc/features/recover/forgot_page.dart';
 import 'package:meu_1_ecommerc/features/login/page/login_page.dart';
 import 'package:meu_1_ecommerc/features/wteste/pg_tast.dart';
@@ -10,5 +11,6 @@ class AppRoutes {
     SingupPage.route: (context) => SingupPage(),
     Testpagina.route: (context) => Testpagina(),
     ForgotPage.route: (context) => ForgotPage(),
+    PgHome.route: (context) => PgHome(),
   };
 }

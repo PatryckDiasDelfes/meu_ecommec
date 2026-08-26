@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meu_1_ecommerc/features/login/model/user.dart';
+import 'package:meu_1_ecommerc/shared/exeptions/auth_exeption.dart';
 
 class LoginController extends ChangeNotifier {
+  User? user;
   // ============================================================
   // CONFIGURAÇÕES
   // ============================================================
@@ -8,6 +11,9 @@ class LoginController extends ChangeNotifier {
   final RegExp _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   final int _minimumPasswordCharacters = 6;
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
 
   // ============================================================
   // ESTADO DA TELA
@@ -45,20 +51,34 @@ class LoginController extends ChangeNotifier {
   // LOGIN
   // ============================================================
 
-  Future<void> handleLogin() async {
-    if (key.currentState!.validate()) {
-      isLoading = true;
-      notifyListeners();
+  void changesIsLoading(bool value) {
+    isLoading = value;
+    notifyListeners();
+  }
 
+  Future<void> handleLogin() async {
+    if (!key.currentState!.validate()) {
+      throw ErrorDescription('Validaçao_incorreta');
+    }
+    changesIsLoading(true);
+
+    try {
       await login();
 
-      isLoading = false;
-      notifyListeners();
+      emailController.clear();
+      senhaController.clear();
+    } finally {
+      changesIsLoading(false);
     }
   }
 
   Future<void> login() async {
     await Future.delayed(const Duration(seconds: 2));
+    if (emailController.text.trim() != 'delfesne@gmail.com' ||
+        senhaController.text.trim() != '1234567') {
+      throw AuthException('E-mail ou senha incorretos');
+    }
+    user = User(nome: 'Patryck', email: emailController.text);
   }
 
   // ============================================================

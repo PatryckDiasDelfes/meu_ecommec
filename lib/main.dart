@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_1_ecommerc/core/routes/routes.dart';
+import 'package:meu_1_ecommerc/features/home/controller/home_controller.dart';
 import 'package:meu_1_ecommerc/features/login/controller/login_controller.dart';
 import 'package:meu_1_ecommerc/features/singup/controller/singup_controller.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) {
             return SingUpController();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            return HomeController();
           },
         ),
       ],
