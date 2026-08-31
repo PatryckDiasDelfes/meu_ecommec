@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
 import 'package:meu_1_ecommerc/features/home/controller/home_controller.dart';
 import 'package:meu_1_ecommerc/features/home/models/category_model.dart';
 import 'package:meu_1_ecommerc/features/home/widgets/product_card.dart';
-
-import 'package:provider/provider.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key, required this.category});
@@ -18,40 +18,53 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  // Texto que o usuário está digitando
+  // =========================
+  // Controllers
+  // =========================
+  final TextEditingController searchController = TextEditingController();
+
+  // =========================
+  // Estados
+  // =========================
   String searchText = '';
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController searchController = TextEditingController();
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     final homeController = context.read<HomeController>();
 
-    // Filtra os produtos:
-    // 1. Pela categoria selecionada
-    // 2. Pelo texto pesquisado
+    // =========================
+    // Filtragem dos produtos
+    // =========================
     final categoryProducts = homeController.products.where((product) {
-      // Verifica se pertence à categoria atual
       final isSameCategory = product.category == widget.category.name;
 
-      // Converte o nome do produto e a pesquisa para minúsculo
       final productName = product.name.toLowerCase();
       final search = searchText.toLowerCase();
 
-      // Verifica se o nome contém o texto pesquisado
       final matchesSearch = productName.contains(search);
 
-      // O produto precisa atender às duas condições
       return isSameCategory && matchesSearch;
     }).toList();
 
     return Scaffold(
+      // =========================
+      // App bar
+      // =========================
       appBar: AppBar(title: Text(widget.category.name)),
 
+      // =========================
+      // Conteúdo
+      // =========================
       body: Column(
         children: [
           // =========================
-          // BARRA DE PESQUISA
+          // Barra de pesquisa
           // =========================
           Padding(
             padding: const EdgeInsets.all(16),
@@ -82,13 +95,16 @@ class _CategoryPageState extends State<CategoryPage> {
                       )
                     : null,
 
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: Colors.grey, width: 1),
+                ),
               ),
             ),
           ),
 
           // =========================
-          // PRODUTOS
+          // Produtos
           // =========================
           Expanded(
             child: categoryProducts.isEmpty
@@ -96,6 +112,9 @@ class _CategoryPageState extends State<CategoryPage> {
                 : GridView.builder(
                     padding: const EdgeInsets.all(16),
 
+                    // =========================
+                    // Configuração da grade
+                    // =========================
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -106,10 +125,13 @@ class _CategoryPageState extends State<CategoryPage> {
 
                     itemCount: categoryProducts.length,
 
+                    // =========================
+                    // Card do produto
+                    // =========================
                     itemBuilder: (context, index) {
                       final product = categoryProducts[index];
 
-                      return productCard(product: product);
+                      return ProductCard(product: product);
                     },
                   ),
           ),

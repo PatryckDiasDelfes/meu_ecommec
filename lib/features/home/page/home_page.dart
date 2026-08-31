@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
-
 import 'package:meu_1_ecommerc/features/home/controller/home_controller.dart';
+import 'package:meu_1_ecommerc/features/home/widgets/banner_carousel.dart';
 import 'package:meu_1_ecommerc/features/home/widgets/category_carousel.dart';
-import 'package:meu_1_ecommerc/features/home/widgets/product_carousel.dart';
-
+import 'package:meu_1_ecommerc/features/home/widgets/product_section.dart';
 import 'package:meu_1_ecommerc/features/login/controller/login_controller.dart';
-
 import 'package:meu_1_ecommerc/shared/exeptions/section_title.dart';
-
 import 'package:provider/provider.dart';
 
 class PgHome extends StatefulWidget {
@@ -74,65 +70,30 @@ class _PgHomeState extends State<PgHome> {
             child: Column(
               children: [
                 // =========================
-                // BANNER
+                // Banner
                 // =========================
-                Container(
-                  color: Colors.blue,
-                  height: 136,
-                  width: 340,
-                  child: Row(
-                    children: [
-                      Expanded(flex: 6, child: Text('Aproveite as \n ofertas')),
+                BannerCarousel(),
 
-                      Expanded(
-                        flex: 4,
-                        child: Image.asset(
-                          'assets/images/banner.png',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: double.infinity,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                SizedBox(height: 10),
 
                 // =========================
-                // CATEGORIAS
+                // Categoria
                 // =========================
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SectionTitle(label: 'Categoria'),
 
-                    categoryCarousel(homeController: homeController),
+                    CategoryCarousel(homeController: homeController),
                   ],
                 ),
 
                 // =========================
-                // PRODUTOS - LOADING
+                // Protudo
                 // =========================
-                if (homeController.productsState == ProductsViewState.loading)
-                  ProductCarousel(homeController: homeController),
-
-                // =========================
-                // PRODUTOS - ERROR
-                // =========================
-                if (homeController.productsState == ProductsViewState.error)
-                  const Text('Foda, deu B.O ai'),
-
-                // =========================
-                // PRODUTOS - SUCCESS
-                // =========================
-                if (homeController.productsState == ProductsViewState.success)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SectionTitle(label: 'Produtos'),
-
-                      ProductCarousel(homeController: homeController),
-                    ],
-                  ),
+                Container(
+                  child: ProductSection(homeController: homeController),
+                ),
               ],
             ),
           );

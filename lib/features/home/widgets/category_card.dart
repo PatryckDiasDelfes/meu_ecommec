@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:skeletonizer/skeletonizer.dart';
+
 import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
 import 'package:meu_1_ecommerc/features/home/models/category_model.dart';
 
-import 'package:skeletonizer/skeletonizer.dart';
-
-class categoryCard extends StatelessWidget {
-  const categoryCard({
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({
     super.key,
     required this.category,
     this.isLoading = false,
@@ -30,13 +30,18 @@ class categoryCard extends StatelessWidget {
 
           child: Column(
             children: [
+              // =========================
+              // Imagem
+              // =========================
               SizedBox(
                 height: 90,
                 width: 90,
-
                 child: Image.network(category.imageUrl),
               ),
 
+              // =========================
+              // Nome
+              // =========================
               Text(category.name, style: AppTextStyle.subTitle),
             ],
           ),
@@ -45,3 +50,5 @@ class categoryCard extends StatelessWidget {
     );
   }
 }
+
+//Uma observação: você está usando `Image.network()` diretamente. Depois podemos melhorar esse componente para tratar **loading, erro da imagem e `BoxFit`**, mas não mexeria nisso agora se o objetivo é apenas organizar o código.

@@ -7,31 +7,30 @@ import 'package:meu_1_ecommerc/features/home/models/category_model.dart';
 import 'package:meu_1_ecommerc/features/home/page/category_page.dart';
 import 'package:meu_1_ecommerc/features/home/widgets/category_card.dart';
 
-class categoryCarousel extends StatelessWidget {
+class CategoryCarousel extends StatelessWidget {
   final HomeController homeController;
 
-  const categoryCarousel({super.key, required this.homeController});
+  const CategoryCarousel({super.key, required this.homeController});
 
   @override
   Widget build(BuildContext context) {
-    // =========================================================
-    // LOADING
-    // =========================================================
-
+    // =========================
+    // Loading
+    // =========================
     if (homeController.categoriesState == CategoriesViewState.loading &&
         homeController.categories.isEmpty) {
       return CarouselSlider.builder(
         itemCount: 6,
 
         itemBuilder:
-            (BuildContext context, int categorieIndex, int pageViewIndex) {
+            (BuildContext context, int categoryIndex, int pageViewIndex) {
               // Categoria falsa apenas para o Skeletonizer
               final Category category = Category(
                 name: 'Categoria',
                 imageUrl: '',
               );
 
-              return categoryCard(category: category, isLoading: true);
+              return CategoryCard(category: category, isLoading: true);
             },
 
         options: CarouselOptions(
@@ -42,20 +41,22 @@ class categoryCarousel extends StatelessWidget {
       );
     }
 
-    // =========================================================
-    // CATEGORIAS REAIS
-    // =========================================================
-
+    // =========================
+    // Categorias reais
+    // =========================
     return CarouselSlider.builder(
       itemCount: homeController.categories.length,
 
       itemBuilder:
-          (BuildContext context, int categorieIndex, int pageViewIndex) {
-            final Category category = homeController.categories[categorieIndex];
+          (BuildContext context, int categoryIndex, int pageViewIndex) {
+            final Category category = homeController.categories[categoryIndex];
 
-            return categoryCard(
+            return CategoryCard(
               category: category,
 
+              // =========================
+              // Navegação
+              // =========================
               onTap: () {
                 print('Cliquei em ${category.name}');
 
@@ -72,6 +73,9 @@ class categoryCarousel extends StatelessWidget {
             );
           },
 
+      // =========================
+      // Configurações
+      // =========================
       options: CarouselOptions(
         height: 150,
         viewportFraction: 0.35,
@@ -80,3 +84,44 @@ class categoryCarousel extends StatelessWidget {
     );
   }
 }
+
+// E atenção: como mudamos a classe de:
+
+// ```dart
+// categoryCarousel
+// ```
+
+// para:
+
+// ```dart
+// CategoryCarousel
+// ```
+
+// na `PgHome` você também precisa mudar:
+
+// ```dart
+// categoryCarousel(
+//   homeController: homeController,
+// )
+// ```
+
+// para:
+
+// ```dart
+// CategoryCarousel(
+//   homeController: homeController,
+// )
+// ```
+
+// Isso deixa a nomenclatura dos seus widgets consistente:
+
+// ```text
+// BannerWidget
+// BannerCarousel
+// CategoryCard
+// CategoryCarousel
+// ProductSection
+// ProductCarousel
+// ```
+
+// Esse padrão está bem mais organizado para continuar componentizando o restante do projeto.

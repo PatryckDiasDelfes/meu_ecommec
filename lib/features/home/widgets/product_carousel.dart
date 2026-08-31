@@ -13,17 +13,25 @@ class ProductCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
+      // =========================
+      // Produtos
+      // =========================
       itemCount: homeController.products.length,
 
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-        Product product = homeController.products[itemIndex];
+        final Product product = homeController.products[itemIndex];
 
-        return productCard(
+        return ProductCard(
           product: product,
+
+          // Durante o carregamento, ativa o Skeletonizer
           isLoading: homeController.productsState == ProductsViewState.loading,
         );
       },
 
+      // =========================
+      // Configurações
+      // =========================
       options: CarouselOptions(
         height: 300,
         viewportFraction: 0.6,
