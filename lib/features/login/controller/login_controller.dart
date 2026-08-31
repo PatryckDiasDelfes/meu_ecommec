@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meu_1_ecommerc/features/login/model/user.dart';
+import 'package:meu_1_ecommerc/features/login/model/user_model.dart';
 import 'package:meu_1_ecommerc/shared/exeptions/auth_exeption.dart';
 
 class LoginController extends ChangeNotifier {

@@ -41,7 +41,7 @@ class LoginPage extends StatelessWidget {
                           'assets/images/splash_screen.png',
                           width: MediaQuery.of(context).size.width * 0.4,
                         ),
-                        Text('+DevsEcomm', style: AppTextStyle.title),
+                        Text('+DevsEcomm', style: AppTextStyle.headingLarge),
                       ],
                     ),
                     Spacer(flex: 2),

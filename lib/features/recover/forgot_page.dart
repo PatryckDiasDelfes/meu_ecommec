@@ -24,7 +24,7 @@ class _ForgotPageState extends State<ForgotPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Recuperar senha', style: AppTextStyle.title),
+            Text('Recuperar senha', style: AppTextStyle.headingLarge),
 
             const SizedBox(height: 50),
 
