@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import 'package:meu_1_ecommerc/features/home/widgets/banner_widget.dart';
+import 'package:meu_1_ecommerc/features/home/widgets/banner/banner_widget.dart';
 
 class BannerCarousel extends StatelessWidget {
   const BannerCarousel({super.key});

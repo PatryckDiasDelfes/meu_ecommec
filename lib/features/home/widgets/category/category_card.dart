@@ -36,7 +36,10 @@ class CategoryCard extends StatelessWidget {
               SizedBox(
                 height: 90,
                 width: 90,
-                child: Image.network(category.imageUrl),
+                child: Skeleton.replace(
+                  replacement: Bone.circle(size: 70),
+                  child: Image.network(category.imageUrl),
+                ),
               ),
 
               // =========================
@@ -50,5 +53,3 @@ class CategoryCard extends StatelessWidget {
     );
   }
 }
-
-//Uma observação: você está usando `Image.network()` diretamente. Depois podemos melhorar esse componente para tratar **loading, erro da imagem e `BoxFit`**, mas não mexeria nisso agora se o objetivo é apenas organizar o código.

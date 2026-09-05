@@ -5,7 +5,7 @@ import 'package:meu_1_ecommerc/features/home/controller/home_controller.dart';
 import 'package:meu_1_ecommerc/features/home/models/category_model.dart';
 
 import 'package:meu_1_ecommerc/features/home/page/category_page.dart';
-import 'package:meu_1_ecommerc/features/home/widgets/category_card.dart';
+import 'package:meu_1_ecommerc/features/home/widgets/category/category_card.dart';
 
 class CategoryCarousel extends StatelessWidget {
   final HomeController homeController;
@@ -84,44 +84,3 @@ class CategoryCarousel extends StatelessWidget {
     );
   }
 }
-
-// E atenção: como mudamos a classe de:
-
-// ```dart
-// categoryCarousel
-// ```
-
-// para:
-
-// ```dart
-// CategoryCarousel
-// ```
-
-// na `PgHome` você também precisa mudar:
-
-// ```dart
-// categoryCarousel(
-//   homeController: homeController,
-// )
-// ```
-
-// para:
-
-// ```dart
-// CategoryCarousel(
-//   homeController: homeController,
-// )
-// ```
-
-// Isso deixa a nomenclatura dos seus widgets consistente:
-
-// ```text
-// BannerWidget
-// BannerCarousel
-// CategoryCard
-// CategoryCarousel
-// ProductSection
-// ProductCarousel
-// ```
-
-// Esse padrão está bem mais organizado para continuar componentizando o restante do projeto.

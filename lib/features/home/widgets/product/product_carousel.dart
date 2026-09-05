@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'package:meu_1_ecommerc/features/home/controller/home_controller.dart';
 import 'package:meu_1_ecommerc/features/home/models/product_model.dart';
-import 'package:meu_1_ecommerc/features/home/widgets/product_card.dart';
+import 'package:meu_1_ecommerc/features/home/widgets/product/product_card.dart';
 
 class ProductCarousel extends StatelessWidget {
+  const ProductCarousel({
+    super.key,
+    required this.homeController,
+    this.onProductTap,
+  });
   final HomeController homeController;
-
-  const ProductCarousel({super.key, required this.homeController});
+  final void Function(Product product)? onProductTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,9 @@ class ProductCarousel extends StatelessWidget {
         final Product product = homeController.products[itemIndex];
 
         return ProductCard(
+          onTap: () {
+            onProductTap?.call(product);
+          },
           product: product,
 
           // Durante o carregamento, ativa o Skeletonizer

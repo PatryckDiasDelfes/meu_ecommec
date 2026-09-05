@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:meu_1_ecommerc/features/cart/page/cart_page.dart';
 import 'package:meu_1_ecommerc/features/home/models/category_model.dart';
 
 import 'package:meu_1_ecommerc/features/home/page/category_page.dart';
@@ -17,11 +18,13 @@ class AppRoutes {
 
     PgHome.route: (context) => PgHome(),
 
+    CartPage.route: (context) => CartPage(),
+
     // A categoria será recebida pelos arguments
     CategoryPage.route: (context) {
       final category = ModalRoute.of(context)!.settings.arguments;
 
-      return CategoryPage(category: category as Category);
+      return CategoryPage(category: category as Category?);
     },
   };
 }

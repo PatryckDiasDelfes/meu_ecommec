@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:meu_1_ecommerc/features/home/controller/home_controller.dart';
-import 'package:meu_1_ecommerc/features/home/widgets/product_carousel.dart';
+import 'package:meu_1_ecommerc/features/home/models/product_model.dart';
+import 'package:meu_1_ecommerc/features/home/widgets/product/product_carousel.dart';
 
 import 'package:meu_1_ecommerc/shared/exeptions/section_title.dart';
 
 class ProductSection extends StatelessWidget {
+  const ProductSection({
+    super.key,
+    required this.homeController,
+    this.onProductTap,
+  });
   final HomeController homeController;
-
-  const ProductSection({super.key, required this.homeController});
+  final void Function(Product product)? onProductTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,10 @@ class ProductSection extends StatelessWidget {
         // Loading
         // =========================
         if (homeController.productsState == ProductsViewState.loading)
-          ProductCarousel(homeController: homeController),
+          ProductCarousel(
+            homeController: homeController,
+            onProductTap: onProductTap,
+          ),
 
         // =========================
         // Error
@@ -40,7 +48,10 @@ class ProductSection extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              ProductCarousel(homeController: homeController),
+              ProductCarousel(
+                homeController: homeController,
+                onProductTap: onProductTap,
+              ),
             ],
           ),
       ],

@@ -21,6 +21,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/BQMWr9B8/Image.png',
     'price': 7.99,
     'category': 'Frutas',
+    'description':
+        'A acerola é uma fruta tropical de sabor marcante, levemente ácido e refrescante. É bastante apreciada pelo seu consumo in natura e também pode ser utilizada no preparo de sucos, vitaminas, geleias, sobremesas e outras receitas. Sua polpa apresenta uma textura suculenta e combina muito bem com outras frutas. Uma opção prática para quem busca adicionar uma fruta saborosa e versátil à alimentação do dia a dia.',
   },
   {
     'brand': 'Natural da Terra',
@@ -28,6 +30,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/XYDwfZnN/download-(2).jpg',
     'price': 8.49,
     'category': 'Frutas',
+    'description':
+        'Fruta saborosa e crocante, ideal para consumir como lanche ou utilizar no preparo de receitas, saladas e sobremesas.',
   },
   {
     'brand': 'Natural da Terra',
@@ -35,6 +39,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/8znhRFT5/ole-ole.jpg',
     'price': 6.99,
     'category': 'Frutas',
+    'description':
+        'Fruta prática e nutritiva, com sabor naturalmente adocicado. Ideal para consumir pura, acompanhar refeições ou preparar vitaminas e sobremesas.',
   },
 
   // =========================
@@ -46,6 +52,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/BQMWr9B8/Image.png',
     'price': 10.99,
     'category': 'Verduras',
+    'description':
+        'O rabanete é um vegetal de sabor característico, levemente picante, com textura firme e crocante. Pode ser consumido cru em saladas, utilizado como acompanhamento ou incorporado a diferentes preparações. Sua aparência e sabor marcantes ajudam a trazer variedade aos pratos, sendo uma opção interessante para combinar com folhas, legumes e outros ingredientes frescos.',
   },
   {
     'brand': 'Natural da Terra',
@@ -53,6 +61,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/BQMWr9B8/Image.png',
     'price': 12.19,
     'category': 'Verduras',
+    'description':
+        'Ingrediente versátil para o preparo de massas, risotos, molhos e diversos pratos. Possui textura macia e sabor característico.',
   },
   {
     'brand': 'Natural da Terra',
@@ -60,6 +70,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/rwYS1dq8/download-(1).jpg',
     'price': 5.49,
     'category': 'Verduras',
+    'description':
+        'Folhas frescas e leves, ideais para o preparo de saladas, sanduíches e acompanhamentos para suas refeições.',
   },
 
   // =========================
@@ -71,6 +83,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/wjBXR5Y1/salted-bun.jpg',
     'price': 9.99,
     'category': 'Padaria',
+    'description':
+        'O pão francês é um dos itens mais tradicionais das padarias brasileiras. Possui uma casca dourada e crocante por fora, enquanto seu interior é macio e leve. É uma opção bastante versátil para o café da manhã ou lanche, podendo ser consumido puro, com manteiga, frios, queijos ou utilizado no preparo de sanduíches. Seu sabor simples combina facilmente com diferentes acompanhamentos.',
   },
   {
     'brand': 'Padaria do Bairro',
@@ -78,6 +92,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/fRgxc3MR/download.jpg',
     'price': 12.49,
     'category': 'Padaria',
+    'description':
+        'Pão macio e prático para o dia a dia, ideal para preparar sanduíches, torradas e diversas outras receitas.',
   },
   {
     'brand': 'Padaria do Bairro',
@@ -85,6 +101,8 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/GmSkFBbL/download-(3).jpg',
     'price': 8.99,
     'category': 'Padaria',
+    'description':
+        'Massa folhada, leve e saborosa, perfeita para o café da manhã ou lanche. Pode ser consumida pura ou acompanhada de recheios.',
   },
 
   // =========================
@@ -97,6 +115,8 @@ final List<Map<String, dynamic>> productsJson = [
         'https://i.postimg.cc/wjxVc8LT/pushmemes-nutella-(kawaii)-(1).jpg',
     'price': 29.99,
     'category': 'Importados',
+    'description':
+        'Nutella é um creme de avelã com cacau conhecido mundialmente por sua textura cremosa e sabor característico. Pode ser utilizado de diversas maneiras, seja espalhado sobre pães e torradas, acompanhado de frutas, utilizado no preparo de sobremesas ou simplesmente consumido como um complemento para diferentes lanches. Sua consistência facilita a aplicação e permite diversas combinações na cozinha.',
   },
   {
     'brand': 'Lindt',
@@ -105,6 +125,8 @@ final List<Map<String, dynamic>> productsJson = [
         'https://i.postimg.cc/6p1dr7BQ/Lindt-Chocolate-Summer-S-mores-Contest-Baker-by-Nature.jpg',
     'price': 24.99,
     'category': 'Importados',
+    'description':
+        'Chocolate premium produzido pela Lindt, reconhecido pela qualidade e textura suave. Uma excelente opção para apreciar ou presentear.',
   },
   {
     'brand': 'Pringles',
@@ -112,5 +134,7 @@ final List<Map<String, dynamic>> productsJson = [
     'imageUrl': 'https://i.postimg.cc/HkPQwJTn/Pringles.jpg',
     'price': 18.99,
     'category': 'Importados',
+    'description':
+        'Batatas crocantes e saborosas, acondicionadas em sua tradicional embalagem tubular. Ideal para lanches e momentos de descontração.',
   },
 ];
