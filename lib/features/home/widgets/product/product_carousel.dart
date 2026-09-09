@@ -16,11 +16,16 @@ class ProductCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const int maxProduct = 2;
+    final int productCount = homeController.products.length > maxProduct
+        ? maxProduct
+        : homeController.products.length;
+
     return CarouselSlider.builder(
       // =========================
       // Produtos
       // =========================
-      itemCount: homeController.products.length,
+      itemCount: productCount,
 
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
         final Product product = homeController.products[itemIndex];

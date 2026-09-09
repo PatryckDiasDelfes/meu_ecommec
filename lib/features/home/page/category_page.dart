@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meu_1_ecommerc/features/home/models/product_model.dart';
+import 'package:meu_1_ecommerc/shared/widget/app_modal.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:meu_1_ecommerc/features/home/controller/home_controller.dart';
 import 'package:meu_1_ecommerc/features/home/models/category_model.dart';
@@ -30,6 +33,7 @@ class _CategoryPageState extends State<CategoryPage> {
   double maxPrice = 0;
   String? selectedCategory;
   String searchText = '';
+  String selectedOrder = 'Mais relevantes';
 
   // ==================================================
   // CICLO DE VIDA
@@ -114,6 +118,17 @@ class _CategoryPageState extends State<CategoryPage> {
     }).toList();
 
     // ==================================================
+    // ORDENAÇÃO
+    // ==================================================
+    if (selectedOrder == 'Menor preço') {
+      categoryProducts.sort((a, b) => a.price.compareTo(b.price));
+    }
+
+    if (selectedOrder == 'Maior preço') {
+      categoryProducts.sort((a, b) => b.price.compareTo(a.price));
+    }
+
+    // ==================================================
     // TELA
     // ==================================================
 
@@ -172,68 +187,191 @@ class _CategoryPageState extends State<CategoryPage> {
           ),
 
           // ==================================================
-          // CATEGORIA
+          // FILTROS
           // ==================================================
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DropdownButtonFormField<String>(
-              initialValue: selectedCategory,
-              decoration: const InputDecoration(
-                labelText: 'Categoria',
-                border: OutlineInputBorder(),
+          GestureDetector(
+            onTap: () {
+              showMaterialModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  double tempMinPrice = minPrice;
+                  double tempMaxPrice = maxPrice;
+                  String tempOrder = selectedOrder;
+
+                  return StatefulBuilder(
+                    builder: (context, setModalState) {
+                      return SizedBox(
+                        height: 600,
+                        child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Filtros',
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              const SizedBox(height: 24),
+
+                              const Text(
+                                'Ordenar por',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              const SizedBox(height: 12),
+
+                              Wrap(
+                                spacing: 8,
+                                children: [
+                                  FilterChip(
+                                    label: const Text('Mais relevantes'),
+                                    selected: tempOrder == 'Mais relevantes',
+                                    onSelected: (_) {
+                                      setModalState(() {
+                                        tempOrder = 'Mais relevantes';
+                                      });
+                                    },
+                                  ),
+
+                                  FilterChip(
+                                    label: const Text('Menor preço'),
+                                    selected: tempOrder == 'Menor preço',
+                                    onSelected: (_) {
+                                      setModalState(() {
+                                        tempOrder = 'Menor preço';
+                                      });
+                                    },
+                                  ),
+
+                                  FilterChip(
+                                    label: const Text('Maior preço'),
+                                    selected: tempOrder == 'Maior preço',
+                                    onSelected: (_) {
+                                      setModalState(() {
+                                        tempOrder = 'Maior preço';
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+
+                              const SizedBox(height: 20),
+
+                              // ==================================================
+                              // CATEGORIA
+                              // ==================================================
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: categories.map((category) {
+                                  return FilterChip(
+                                    label: Text(category),
+                                    selected: selectedCategory == category,
+                                    onSelected: (selected) {
+                                      setModalState(() {
+                                        selectedCategory = selected
+                                            ? category
+                                            : 'Todas';
+                                      });
+                                    },
+                                  );
+                                }).toList(),
+                              ),
+
+                              const SizedBox(height: 20),
+
+                              // ==================================================
+                              // PREÇO
+                              // ==================================================
+                              const Text(
+                                'Preço',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+
+                              const SizedBox(height: 8),
+
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'R\$ ${tempMinPrice.toStringAsFixed(2)}',
+                                  ),
+                                  Text(
+                                    'R\$ ${tempMaxPrice.toStringAsFixed(2)}',
+                                  ),
+                                ],
+                              ),
+
+                              RangeSlider(
+                                min: lowestPrice,
+                                max: highestPrice,
+                                values: RangeValues(tempMinPrice, tempMaxPrice),
+                                onChanged: (values) {
+                                  setModalState(() {
+                                    tempMinPrice = values.start;
+                                    tempMaxPrice = values.end;
+                                  });
+                                },
+                              ),
+
+                              const Spacer(),
+
+                              SizedBox(
+                                width: double.infinity,
+                                height: 52,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      minPrice = tempMinPrice;
+                                      maxPrice = tempMaxPrice;
+                                      selectedOrder = tempOrder;
+                                    });
+
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text(
+                                    'Aplicar filtros',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(10),
               ),
-              items: categories.map((category) {
-                return DropdownMenuItem<String>(
-                  value: category,
-                  child: Text(category),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedCategory = value;
-                });
-              },
-            ),
-          ),
-
-          // ==================================================
-          // PREÇO
-          // ==================================================
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Preço',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      'R\$ ${minPrice.toStringAsFixed(2)} - '
-                      'R\$ ${maxPrice.toStringAsFixed(2)}',
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-
-                RangeSlider(
-                  min: lowestPrice,
-                  max: highestPrice,
-                  values: RangeValues(minPrice, maxPrice),
-                  onChanged: (values) {
-                    setState(() {
-                      minPrice = values.start;
-                      maxPrice = values.end;
-                    });
-                  },
-                ),
-              ],
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.filter_list),
+                  SizedBox(width: 8),
+                  Text('Filtros'),
+                ],
+              ),
             ),
           ),
 
@@ -243,29 +381,44 @@ class _CategoryPageState extends State<CategoryPage> {
           Expanded(
             child: categoryProducts.isEmpty
                 ? const Center(child: Text('Nenhum produto encontrado.'))
+                //O GridView.builder serve para criar vários itens automaticamente.
                 : GridView.builder(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(10),
 
-                    // ==================================================
-                    // CONFIGURAÇÃO DA GRADE
-                    // ==================================================
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          crossAxisSpacing: 12,
-                          mainAxisSpacing: 20,
-                          childAspectRatio: 0.64,
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5,
+                          childAspectRatio: 0.65,
                         ),
 
                     itemCount: categoryProducts.length,
 
-                    // ==================================================
-                    // CARD DO PRODUTO
-                    // ==================================================
                     itemBuilder: (context, index) {
-                      final product = categoryProducts[index];
+                      return ProductCard(
+                        product: categoryProducts[index],
+                        onTap: () {
+                          final Product product = categoryProducts[index];
 
-                      return ProductCard(product: product);
+                          print('PRODUTO CLICADO: ${product.name}');
+
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (context) {
+                              return AppModal(
+                                brand: product.brand,
+                                name: product.name,
+                                imageUrl: product.imageUrl,
+                                description: product.description,
+                                price: product.price,
+                                category: product.category,
+                              );
+                            },
+                          );
+                        },
+                      );
                     },
                   ),
           ),
