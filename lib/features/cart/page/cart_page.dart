@@ -86,7 +86,7 @@ class _CartPageState extends State<CartPage> {
                                   AppElevatedButton(
                                     label: '-',
                                     type: ButtonType.filled,
-                                    backgroundColor: AppColors.black,
+                                    backgroundColor: Colors.amber,
                                   ),
 
                                   Text('Opa'),
