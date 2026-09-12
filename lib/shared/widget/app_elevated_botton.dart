@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meu_1_ecommerc/core/theme/app_colors.dart';
 import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
 
-enum ButtonType { filled, outlined }
+enum ButtonType { filled, outlined, addToCart }
 
 class AppElevatedButton extends StatelessWidget {
   const AppElevatedButton({
@@ -14,6 +14,7 @@ class AppElevatedButton extends StatelessWidget {
     this.isLoading = false,
     this.isHeight,
     this.isWidth,
+    this.isStyle,
   });
 
   final String label;
@@ -23,6 +24,7 @@ class AppElevatedButton extends StatelessWidget {
   final bool isLoading;
   final double? isHeight;
   final double? isWidth;
+  final TextStyle? isStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class AppElevatedButton extends StatelessWidget {
                     : AppColors.black,
               ),
             )
-          : Text(label),
+          : Text(label, style: isStyle ?? AppTextStyle.buttonLabel),
     );
   }
 
@@ -51,6 +53,8 @@ class AppElevatedButton extends StatelessWidget {
           minimumSize: const Size(48, 48),
           foregroundColor: AppColors.white,
           backgroundColor: backgroundColor,
+          disabledForegroundColor: AppColors.white,
+          disabledBackgroundColor: backgroundColor,
           textStyle: AppTextStyle.buttonLabel,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
@@ -61,10 +65,24 @@ class AppElevatedButton extends StatelessWidget {
           minimumSize: const Size(48, 48),
           foregroundColor: AppColors.black,
           backgroundColor: backgroundColor,
+          disabledForegroundColor: AppColors.white,
+          disabledBackgroundColor: backgroundColor,
           textStyle: AppTextStyle.buttonLabel,
 
           shape: RoundedRectangleBorder(
             side: BorderSide(color: AppColors.black),
+            borderRadius: BorderRadius.circular(12),
+          ),
+        );
+      case ButtonType.addToCart:
+        return ElevatedButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          foregroundColor: AppColors.white,
+          backgroundColor: AppColors.black,
+          disabledForegroundColor: AppColors.white,
+          disabledBackgroundColor: AppColors.black,
+          textStyle: AppTextStyle.buttonLabel,
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         );
