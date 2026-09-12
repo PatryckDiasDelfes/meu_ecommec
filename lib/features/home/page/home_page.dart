@@ -43,7 +43,7 @@ class _PgHomeState extends State<PgHome> {
             return Row(
               children: [
                 Text(
-                  'Olá, ${loginController.user!.nome}.',
+                  'Olá, ${loginController.user?.nome ?? 'Usuário'}.',
                   style: AppTextStyle.headingLarge,
                 ),
               ],
@@ -119,14 +119,7 @@ class _PgHomeState extends State<PgHome> {
                       isScrollControlled: true,
 
                       builder: (context) {
-                        return AppModal(
-                          brand: product.brand,
-                          name: product.name,
-                          imageUrl: product.imageUrl,
-                          description: product.description,
-                          price: product.price,
-                          category: product.category,
-                        );
+                        return AppModal(product: product);
                       },
                     );
                   },

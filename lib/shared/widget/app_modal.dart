@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meu_1_ecommerc/core/theme/app_colors.dart';
 import 'package:meu_1_ecommerc/core/theme/app_text_style.dart';
+import 'package:meu_1_ecommerc/features/cart/controller/cart_controller.dart';
+import 'package:meu_1_ecommerc/features/home/models/product_model.dart';
 import 'package:meu_1_ecommerc/shared/widget/app_elevated_botton.dart';
+import 'package:provider/provider.dart';
 
 class AppModal extends StatelessWidget {
-  const AppModal({
-    required this.brand,
-    required this.name,
-    required this.imageUrl,
-    required this.description,
-    required this.price,
-    required this.category,
-  });
-  final String brand;
-  final String name;
-  final String imageUrl;
-  final String description;
-  final double price;
-  final String category;
+  const AppModal({super.key, required this.product});
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +35,10 @@ class AppModal extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(9),
-                    child: Image.network(imageUrl, fit: BoxFit.fitWidth),
+                    child: Image.network(
+                      product.imageUrl,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
               ),
@@ -53,28 +48,31 @@ class AppModal extends StatelessWidget {
               // =========================
               // Nome
               // =========================
-              Text(name, style: AppTextStyle.subTitle),
+              Text(product.name, style: AppTextStyle.subTitle),
 
               const SizedBox(height: 3),
 
               // =========================
               // Marca
               // =========================
-              Text(brand, style: AppTextStyle.smallBlack1),
+              Text(product.brand, style: AppTextStyle.smallBlack1),
 
               const SizedBox(height: 5),
 
               // =========================
               // Descrição
               // =========================
-              Text(description, style: AppTextStyle.smallBlack1),
+              Text(product.description, style: AppTextStyle.smallBlack1),
 
               const SizedBox(height: 8),
 
               // =========================
               // Preço
               // =========================
-              Text('R\$${price.toStringAsFixed(2)}', style: AppTextStyle.price),
+              Text(
+                'R\$${product.price.toStringAsFixed(2)}',
+                style: AppTextStyle.price,
+              ),
 
               const SizedBox(height: 8),
 
@@ -82,14 +80,16 @@ class AppModal extends StatelessWidget {
               // Botão
               // =========================
               AppElevatedButton(
-                label: 'Adcionar ao carrinho',
-
+                label: 'Adicionar ao carrinho',
                 isLoading: false,
 
-                onPressed: () {},
+                onPressed: () {
+                  context.read<CartController>().addProduct(product);
+
+                  Navigator.pop(context);
+                },
 
                 type: ButtonType.filled,
-
                 backgroundColor: AppColors.black,
               ),
             ],

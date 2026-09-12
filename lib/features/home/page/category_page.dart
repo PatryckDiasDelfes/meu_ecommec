@@ -92,10 +92,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
     final categories = [
       'Todas',
-      ...homeController.products
-          .map((product) => product.category)
-          .toSet()
-          .toList(),
+      ...homeController.products.map((product) => product.category).toSet(),
     ];
 
     // ==================================================
@@ -401,20 +398,11 @@ class _CategoryPageState extends State<CategoryPage> {
                         onTap: () {
                           final Product product = categoryProducts[index];
 
-                          print('PRODUTO CLICADO: ${product.name}');
-
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
                             builder: (context) {
-                              return AppModal(
-                                brand: product.brand,
-                                name: product.name,
-                                imageUrl: product.imageUrl,
-                                description: product.description,
-                                price: product.price,
-                                category: product.category,
-                              );
+                              return AppModal(product: product);
                             },
                           );
                         },
